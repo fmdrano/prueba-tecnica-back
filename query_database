@@ -1,0 +1,41 @@
+create database prueba_tecnica;
+
+use prueba_tecnica;
+
+CREATE TABLE `usuarios` (
+   `id` bigint NOT NULL AUTO_INCREMENT,
+   `apellido` varchar(255) DEFAULT NULL,
+   `email` varchar(255) DEFAULT NULL,
+   `enabled` bit(1) NOT NULL,
+   `nombre` varchar(255) DEFAULT NULL,
+   `password` varchar(255) DEFAULT NULL,
+   `perfil` varchar(255) DEFAULT NULL,
+   `telefono` varchar(255) DEFAULT NULL,
+   `username` varchar(255) DEFAULT NULL,
+   `must_change_password` tinyint(1) NOT NULL DEFAULT '0',
+   PRIMARY KEY (`id`)
+ );
+ 
+ CREATE TABLE `roles` (
+   `rol_id` bigint NOT NULL AUTO_INCREMENT,
+   `nombre` varchar(255) DEFAULT NULL,
+   `rol_nombre` varchar(255) DEFAULT NULL,
+   PRIMARY KEY (`rol_id`)
+ );
+ 
+ CREATE TABLE `usuario_rol` (
+   `usuario_rol_id` bigint NOT NULL AUTO_INCREMENT,
+   `rol_rol_id` bigint DEFAULT NULL,
+   `usuario_id` bigint DEFAULT NULL,
+   PRIMARY KEY (`usuario_rol_id`),
+   KEY `FK7j1tyvjj1tv8gbq7n6f7efccc` (`rol_rol_id`),
+   KEY `FKktsemf1f6awjww4da0ocv4n32` (`usuario_id`),
+   CONSTRAINT `FK7j1tyvjj1tv8gbq7n6f7efccc` FOREIGN KEY (`rol_rol_id`) REFERENCES `roles` (`rol_id`),
+   CONSTRAINT `FKktsemf1f6awjww4da0ocv4n32` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
+ );
+ 
+ INSERT INTO `prueba_tecnica`.`roles` (`rol_id`, `nombre`, `rol_nombre`) VALUES ('1', 'ADMIN', 'ADMIN');
+INSERT INTO `prueba_tecnica`.`usuarios` (`id`, `apellido`, `email`, `enabled`, `nombre`, `password`, `perfil`, `telefono`, `username`, `must_change_password`) VALUES ('1', 'Medrano', 'fmdrano14@gmail.com', 1, 'Fernando', 'test1', '1', '72716503', 'mm103821', '0');
+ INSERT INTO `prueba_tecnica`.`roles` (`rol_id`, `nombre`, `rol_nombre`) VALUES ('1', 'ADMIN', 'ADMIN');
+
+ 
