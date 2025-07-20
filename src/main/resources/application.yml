@@ -1,0 +1,40 @@
+spring:
+
+  # Configuración MySQL
+  datasource:
+    url: jdbc:mysql://localhost:3306/prueba_tecnica?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 20000
+      idle-timeout: 300000
+      max-lifetime: 1200000
+      leak-detection-threshold: 60000
+
+  # Configuración JPA/Hibernate
+  jpa:
+    hibernate:
+      ddl-auto: update # Cambiar a 'validate' en producción
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+        jdbc:
+          batch_size: 20
+        order_inserts: true
+        order_updates: true
+
+# Configuración del servidor
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+# Configuración de JWT
+jwt:
+  secret: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn09FpDC3EYZnWIhTn5J8kDV5M2ML55Pgk98NrzVx33lSA
+  expiration: 86400000
